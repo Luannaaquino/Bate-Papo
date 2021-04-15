@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="css/reset.css" rel="stylesheet" type="text/css"/>
+    <link href="css/style.css" rel="stylesheet" type="text/css"/>
+    <title>Chat Uol</title>
+</head>
+<body>
+  
+    <header class="topo">
+        <img src="imagens/logo.png" class="logo">
+                <ion-icon name="people-sharp"  onclick="abrirMenu()"></ion-icon>
+    </header>
+    
+    <section>
+        <div class="deixandoescuro" onclick="fecharMenu()"></div>
+    </section>       
+    
+    <nav>
+        <p>
+            Escolha um contato para enviar mensagem:
+        </p>
+        <div class="caixadecontatos">
+            <ul id="contatos">
+                <li>
+                    <ion-icon name="people"></ion-icon>
+                    <span>Todos</span>
+                </li>
+            </ul>
+        </div>
+        <div class="visibilidade-da-mensagem">
+            <p>
+                Escolha a visibilidade:
+            </p>
+            <ul id="visibilidade">
+                <li>
+                    <ion-icon name="lock-open"></ion-icon>
+                    <span>Público</span>
+                </li>
+                <li>
+                    <ion-icon name="lock-closed"></ion-icon>
+                    <span>Privado</span>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    
+     <main>
+
+     </main>
+  
+
+
+    <footer>
+        <div>
+            <input type="text" placeholder="Escreva aqui...">
+            <p>Enviando para Todos</p>
+        </div>
+        <ion-icon name="paper-plane-outline" onclick="enviarMenssagem()" class="enviar"></ion-icon>
+    </footer>
+    
+    <script src="https://unpkg.com/ionicons@5.1.2/dist/ionicons.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="javascript/script.js"></script>
+</body>
+    
+</body>
+</html>
