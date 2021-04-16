@@ -122,11 +122,22 @@ padding-left: 5px;
   margin: 5px;
   background-color: white;
   padding: 5px;
-  display: flex;
-  flex-wrap: wrap;
+  width: 100%;
+  word-wrap: break-word;
 }
 
 .texto-da-mensagem{
-  display: flex;
-  flex-wrap: wrap;
+  word-wrap: break-word;
+}
+
+.entrar-e-sair{
+  background-color: #D3D3D3;
+}
+
+.mensagem-publica{
+  background-color: white;
+}
+
+.mensagem-privada{
+  background-color: pink;
 }

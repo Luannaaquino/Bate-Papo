@@ -20,11 +20,11 @@ function fecharMenu(){
 
 function visualizarChat(){
     receberMensagens();
+    //atualizarAsMensagens();
     renderizarMensagens();
 }
 
 function receberMensagens(){ 
-    //ussar a array mensagens, para guardar essas informaçoes ! mais semantico do que deixar solto? ou deixar tudo direto no renderizarMensagens sem salvar na array?
     var requisicao = axios.get('https://mock-api.bootcamp.respondeai.com.br/api/v2/uol/messages');
     requisicao.then(guardarMensagens);
 }
@@ -35,14 +35,20 @@ function guardarMensagens(resposta){
     renderizarMensagens();
 }
 
+function atualizarAsMensagens(){
+    setInterval(receberMensagens, 3000)
+}
+
 function renderizarMensagens(){
     var main;
-    var elementoMensagem
+    var elementoMensagem;
+//criar o maain no html se sobrar tempo, parar de receber as mesmas mensagens a cada 3s
     for(var i = 0; i < mensagens.length; i++){
         var mensagem = mensagens[i]
         elementoMensagem = document.createElement("div");
         elementoMensagem.setAttribute("class", "mensagens-bonitinhas");
         elementoMensagem.innerHTML = "<div>"+"<span style='color:#AAAAAA'>"+mensagem.time+"</span>"+"<strong>"+mensagem.from+"</strong>"+"<span>"+"para"+"</span>"+"<strong>"+ mensagem.to +":"+"</strong>"+"<span class='texto-da-mensagem'>"+ mensagem.text+"</span>" +"</div>";
+        elementoMensagem.classList.add('entrar-e-sair')
         main = document.querySelector("main");
         main.appendChild(elementoMensagem);
     }
