@@ -1,6 +1,8 @@
 abrirMenu();
 fecharMenu();
 var mensagens = [];
+var enviodamensagem = 'Todos';
+var tipodamensagem = 'message';
 
 var nick = prompt("Digite seu nickname");
 guardarNickname();
@@ -11,7 +13,7 @@ function guardarNickname(){
     }
 
     var requisicao = axios.post('https://mock-api.bootcamp.respondeai.com.br/api/v2/uol/participants', nickname);
-    requisicao.then(visualizarChat).catch(insiraUmNickValido);
+    requisicao.then(gerenciamento).catch(insiraUmNickValido);
 }
 
 function insiraUmNickValido(){
@@ -34,10 +36,11 @@ function fecharMenu(){
     desfocado.style.display="none";
 }
 
-function visualizarChat(){
+function gerenciamento(){
     receberMensagens();
     //atualizarAsMensagens();
     renderizarMensagens();
+    statusUsuario();
 }
 
 function receberMensagens(){ 
@@ -53,6 +56,10 @@ function guardarMensagens(resposta){
 
 function atualizarAsMensagens(){
     setInterval(receberMensagens, 3000)
+}
+
+function statusUsuario(){
+    setInterval(atualizarUsuariosAtivos, 5000)
 }
 
 function renderizarMensagens(){
@@ -77,4 +84,37 @@ function renderizarMensagens(){
         main = document.querySelector("main");
         main.appendChild(elementoMensagem);
     }
+}
+
+function atualizarUsuariosAtivos(){
+    var nickname = {
+        name: nick
+    }
+
+    var requisicao = axios.post('https://mock-api.bootcamp.respondeai.com.br/api/v2/uol/status', nickname);
+}
+
+function enviarMenssagem (){
+    var input = document.querySelector(".inputmensagem");
+    var textomensagem = input.value;
+
+    if(textomensagem !== ""){
+        var dados = {
+            from: nick,
+	        to: enviodamensagem,
+	        text: textomensagem,
+	        type: tipodamensagem,
+        }
+
+        mensagens.push(dados);
+        renderizarMensagens();
+
+        var requisicao = axios.post('https://mock-api.bootcamp.respondeai.com.br/api/v2/uol/messages', dados);
+
+        requisicao.then(atualizarPagina);
+    }
+}
+
+function atualizarPagina(){
+    window.location.reload();
 }
