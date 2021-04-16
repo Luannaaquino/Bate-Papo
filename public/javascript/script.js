@@ -111,7 +111,7 @@ function enviarMenssagem (){
 
         var requisicao = axios.post('https://mock-api.bootcamp.respondeai.com.br/api/v2/uol/messages', dados);
 
-        requisicao.then(atualizarPagina);
+        requisicao.catch(atualizarPagina);
     }
 }
 
