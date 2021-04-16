@@ -1,7 +1,23 @@
 abrirMenu();
 fecharMenu();
-visualizarChat();
 var mensagens = [];
+
+var nick = prompt("Digite seu nickname");
+guardarNickname();
+
+function guardarNickname(){
+    var nickname = {
+        name: nick
+    }
+
+    var requisicao = axios.post('https://mock-api.bootcamp.respondeai.com.br/api/v2/uol/participants', nickname);
+    requisicao.then(visualizarChat).catch(insiraUmNickValido);
+}
+
+function insiraUmNickValido(){
+    prompt("Por favor, insira outro nick,este já esta em uso");
+guardarNickname();
+}
 
 function abrirMenu(){
     var menu = document.querySelector("nav");
@@ -52,7 +68,7 @@ function renderizarMensagens(){
 
         if(mensagem.type === "status"){
             elementoMensagem.classList.add('entrar-e-sair')
-        } else if(mensagem.type === "private-message"){
+        } else if(mensagem.type === "private_message"){
             elementoMensagem.classList.add('mensagem-privada')
         } else {
             elementoMensagem.classList.add('mensagem-publica')
