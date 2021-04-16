@@ -89,6 +89,7 @@ footer{
   bottom: 0;
   left:0;
   background: white;
+  margin-top: 85px;
 }
 footer p{
   color: #333;
@@ -140,4 +141,8 @@ padding-left: 5px;
 
 .mensagem-privada{
   background-color: pink;
+}
+
+main{
+  margin-bottom: 80px;;
 }
