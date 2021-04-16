@@ -97,6 +97,7 @@ function atualizarUsuariosAtivos(){
 function enviarMenssagem (){
     var input = document.querySelector(".inputmensagem");
     var textomensagem = input.value;
+    input.value="";
 
     if(textomensagem !== ""){
         var dados = {
