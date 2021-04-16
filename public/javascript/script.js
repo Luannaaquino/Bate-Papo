@@ -31,16 +31,18 @@ function receberMensagens(){
 
 function guardarMensagens(resposta){
     console.log(resposta);
+    mensagens = resposta.data;
+    renderizarMensagens();
 }
 
 function renderizarMensagens(){
     var main;
     var elementoMensagem
-    for(var i=0; i<mensagens.length; i++){
-        var mensagens = mensagens[i]
+    for(var i = 0; i < mensagens.length; i++){
+        var mensagem = mensagens[i]
         elementoMensagem = document.createElement("div");
         elementoMensagem.setAttribute("class", "mensagens-bonitinhas");
-        elementoMensagem.innerHTML = "<div>"+"<span style='color:#AAAAAA'>"+resposta.data[i].time+"</span>"+"<strong>"+resposta.data[i].from+"</strong>"+"<span>"+"para"+"</span>"+"<strong>"+ resposta.data[i].to +":"+"</strong>"+"<span>"+ resposta.data[i].text+"</span>" +"</div>";
+        elementoMensagem.innerHTML = "<div>"+"<span style='color:#AAAAAA'>"+mensagem.time+"</span>"+"<strong>"+mensagem.from+"</strong>"+"<span>"+"para"+"</span>"+"<strong>"+ mensagem.to +":"+"</strong>"+"<span class='texto-da-mensagem'>"+ mensagem.text+"</span>" +"</div>";
         main = document.querySelector("main");
         main.appendChild(elementoMensagem);
     }
