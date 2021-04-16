@@ -42,13 +42,22 @@ function atualizarAsMensagens(){
 function renderizarMensagens(){
     var main;
     var elementoMensagem;
-//criar o maain no html se sobrar tempo, parar de receber as mesmas mensagens a cada 3s
+//criar o maain no html se sobrar tempo, parar de receber as mesmas mensagens a cada 3s// arrumar esse bug
     for(var i = 0; i < mensagens.length; i++){
         var mensagem = mensagens[i]
         elementoMensagem = document.createElement("div");
         elementoMensagem.setAttribute("class", "mensagens-bonitinhas");
         elementoMensagem.innerHTML = "<div>"+"<span style='color:#AAAAAA'>"+mensagem.time+"</span>"+"<strong>"+mensagem.from+"</strong>"+"<span>"+"para"+"</span>"+"<strong>"+ mensagem.to +":"+"</strong>"+"<span class='texto-da-mensagem'>"+ mensagem.text+"</span>" +"</div>";
-        elementoMensagem.classList.add('entrar-e-sair')
+
+
+        if(mensagem.type === "status"){
+            elementoMensagem.classList.add('entrar-e-sair')
+        } else if(mensagem.type === "private-message"){
+            elementoMensagem.classList.add('mensagem-privada')
+        } else {
+            elementoMensagem.classList.add('mensagem-publica')
+        }
+
         main = document.querySelector("main");
         main.appendChild(elementoMensagem);
     }
